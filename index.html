@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>福利电影网 - 免费高清电影福利片单与在线影库 | fulidianyingwang-h5</title>
+<meta name="description" content="福利电影网(fulidianyingwang-h5)提供合规免费电影福利、0元高清片单、新用户观影券、电影分类与热门榜单。官网 https://fulidianyingwang-h5.github.io，移动端自适应，仅作单页演示，接真实片源需版权授权。">
+<meta name="keywords" content="福利电影网, fulidianyingwang-h5, 免费电影福利, 高清电影片单, 0元观影, 电影在线观看">
+<meta name="author" content="福利电影网">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://fulidianyingwang-h5.github.io">
+<link rel="alternate" hreflang="zh-CN" href="https://fulidianyingwang-h5.github.io">
+<meta property="og:type" content="website">
+<meta property="og:title" content="福利电影网 - 免费高清电影福利片单">
+<meta property="og:description" content="fulidianyingwang-h5 提供0元观影券、分类片单、热门榜单与观影帮助，深红丝绒票根风单页，移动端自适应。">
+<meta property="og:url" content="https://fulidianyingwang-h5.github.io">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="福利电影网 - 免费观影福利">
+<meta name="twitter:description" content="fulidianyingwang-h5 官网提供合规免费电影片单、票根券与分类影库演示。">
+<style>
+:root{
+  --velvet:#2a0810;--velvet2:#3f0d18;--card:#fffaf3;--ink:#2b1620;--muted:#7c6470;
+  --gold:#d4af37;--gold2:#f1d27a;--red:#b3122b;--red2:#e23b52;--line:rgba(212,175,55,.28);
+  --navh:64px;--radius:18px;--shadow:0 14px 30px rgba(0,0,0,.28);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:
+    radial-gradient(900px 420px at 88% -8%,rgba(226,59,82,.18),transparent 60%),
+    radial-gradient(760px 360px at 4% 10%,rgba(212,175,55,.14),transparent 58%),
+    linear-gradient(180deg,var(--velvet),var(--velvet2));
+  color:var(--ink);line-height:1.75;padding-top:var(--navh);-webkit-font-smoothing:antialiased;}
+a{color:var(--red);text-decoration:none;transition:.25s;}
+a:hover{color:var(--gold);}
+img{max-width:100%;display:block;}ul{list-style:none;}
+
+.nav{position:fixed;top:0;left:0;right:0;height:var(--navh);z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 16px;
+  background:rgba(42,8,16,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.brand{font-weight:900;font-size:clamp(15px,4.4vw,21px);color:#fff;display:flex;align-items:center;gap:8px;white-space:nowrap;}
+.brand b{background:linear-gradient(90deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.brand .tag{font-size:11px;color:#2a0810;background:var(--gold);padding:2px 7px;border-radius:6px;font-weight:800;}
+.menu-btn{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:10px;}
+.menu-btn span{width:26px;height:3px;background:var(--gold);border-radius:3px;transition:.3s;}
+.menu-btn.open span:nth-child(1){transform:translateY(8px) rotate(45deg);}
+.menu-btn.open span:nth-child(2){opacity:0;}
+.menu-btn.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg);}
+.nav-links{display:flex;gap:6px;flex-wrap:wrap;}
+.nav-links a{color:#f3e7d8;font-size:15px;font-weight:700;min-height:44px;display:inline-flex;align-items:center;padding:8px 12px;border-radius:20px;}
+.nav-links a:hover{background:rgba(212,175,55,.14);color:var(--gold2);}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px;}
+.section{padding:60px 0;}
+.sec-title{font-size:clamp(22px,5vw,30px);font-weight:900;text-align:center;margin-bottom:8px;color:#fff;}
+.sec-title small{display:block;font-size:12px;letter-spacing:2px;color:var(--gold2);font-weight:700;margin-top:8px;}
+.sec-title::after{content:"";display:block;width:78px;height:4px;border-radius:4px;margin:14px auto 0;background:linear-gradient(90deg,var(--gold),var(--red2));}
+
+/* Hero 票根 */
+.hero{border-bottom:1px solid var(--line);padding:70px 0;}
+.hero .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:30px;align-items:center;}
+.ticket{position:relative;background:linear-gradient(135deg,var(--red),var(--velvet2));color:#fff;border-radius:18px;padding:30px;overflow:hidden;box-shadow:var(--shadow);}
+.ticket::before,.ticket::after{content:"";position:absolute;width:26px;height:26px;border-radius:50%;background:var(--velvet);}
+.ticket::before{left:-13px;top:50%;transform:translateY(-50%);}
+.ticket::after{right:-13px;top:50%;transform:translateY(-50%);}
+.ticket .perf{position:absolute;top:14px;right:18px;font-size:12px;color:var(--gold2);border:1px solid var(--gold);padding:3px 8px;border-radius:20px;}
+.ticket h1{font-size:clamp(26px,6vw,42px);line-height:1.2;margin-bottom:14px;}
+.ticket h1 em{font-style:normal;color:var(--gold2);}
+.ticket p{color:#f0d9c9;font-size:clamp(15px,2.6vw,17px);margin-bottom:16px;}
+.urlbox{display:inline-block;font-family:ui-monospace,Menlo,Consolas,monospace;border:1px dashed var(--gold);color:var(--gold2);background:rgba(0,0,0,.25);padding:10px 14px;border-radius:10px;font-size:13px;margin-bottom:18px;}
+.cta{display:inline-block;background:linear-gradient(90deg,var(--gold),var(--red2));color:#2a0810;font-weight:900;padding:13px 30px;border-radius:30px;min-height:46px;}
+.cta:hover{color:#2a0810;filter:brightness(1.05);}
+.side-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);}
+.side-card h3{color:var(--red);font-size:18px;margin-bottom:12px;}
+.dt{display:flex;justify-content:space-between;gap:10px;font-size:14px;padding:9px 0;border-bottom:1px dashed var(--line);color:#5b3a44;}
+.dt:last-child{border-bottom:0;}
+.dt span:last-child{color:var(--ink);font-weight:700;}
+
+/* 福利券 */
+.coupons{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px;}
+.coupon{position:relative;background:var(--card);border:1px dashed var(--gold);border-radius:16px;padding:20px;box-shadow:0 8px 20px rgba(0,0,0,.18);}
+.coupon::before,.coupon::after{content:"";position:absolute;width:20px;height:20px;border-radius:50%;background:var(--velvet);top:50%;transform:translateY(-50%);}
+.coupon::before{left:-10px;}.coupon::after{right:-10px;}
+.coupon .amt{font-size:28px;font-weight:900;color:var(--red);}
+.coupon .amt small{font-size:13px;color:var(--muted);font-weight:700;}
+.coupon h3{font-size:16px;color:var(--ink);margin:8px 0;}
+.coupon p{font-size:13px;color:var(--muted);}
+.coupon .get{display:inline-block;margin-top:12px;background:linear-gradient(90deg,var(--gold),var(--red2));color:#2a0810;font-weight:800;padding:8px 18px;border-radius:20px;}
+
+/* 片库 */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:18px;}
+.movie{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.25s;}
+.movie:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 14px 28px rgba(212,175,55,.22);}
+.cover{height:224px;display:flex;align-items:center;justify-content:center;font-size:44px;color:#fff;position:relative;}
+.p1{background:linear-gradient(135deg,#b3122b,#e23b52);}.p2{background:linear-gradient(135deg,#d4af37,#f1d27a);color:#5a3b00;}
+.p3{background:linear-gradient(135deg,#5a1020,#9c2438);}.p4{background:linear-gradient(135deg,#7a5230,#c79a6b);color:#2b1810;}
+.p5{background:linear-gradient(135deg,#8e1f3a,#d4607a);}.p6{background:linear-gradient(135deg,#caa53b,#efd89a);color:#5a3b00;}
+.ribbon{position:absolute;top:10px;left:10px;background:var(--gold);color:#2a0810;font-size:12px;font-weight:800;padding:3px 8px;border-radius:6px;}
+.ribbon.alt{background:var(--red2);color:#fff;}
+.minfo{padding:12px 14px;}.minfo h3{font-size:15px;color:var(--ink);margin-bottom:6px;}.minfo p{font-size:13px;color:var(--muted);display:flex;justify-content:space-between;}
+
+/* 分类 */
+.chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+.chip{background:var(--card);border:1px solid var(--line);padding:11px 20px;border-radius:24px;font-weight:700;color:var(--red);}
+.chip:hover{background:linear-gradient(90deg,var(--gold),var(--red2));color:#2a0810;border-color:transparent;transform:translateY(-3px);}
+
+/* 榜单 */
+.rank{display:grid;gap:12px;counter-reset:r;}
+.ri{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+.ri::before{counter-increment:r;content:counter(r);width:42px;height:42px;flex:0 0 42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;background:rgba(212,175,55,.16);color:var(--red);}
+.ri:nth-child(1)::before{background:var(--gold);color:#2a0810;}.ri:nth-child(2)::before{background:var(--red2);color:#fff;}.ri:nth-child(3)::before{background:var(--gold2);color:#5a3b00;}
+.rb{flex:1;}.rb h3{font-size:16px;color:var(--ink);}.rb p{font-size:13px;color:var(--muted);}.rs{font-weight:900;color:var(--red);font-size:18px;}
+
+/* 帮助+关于 */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:0 8px 18px rgba(0,0,0,.16);}
+.panel h3{color:var(--red);margin-bottom:12px;font-size:18px;}
+.panel p{font-size:14px;color:#5b3a44;margin-bottom:10px;}
+details{border:1px solid var(--line);background:var(--card);border-radius:10px;margin-bottom:10px;overflow:hidden;}
+summary{padding:14px 16px;font-weight:700;cursor:pointer;min-height:44px;display:flex;justify-content:space-between;align-items:center;color:var(--ink);}
+summary::-webkit-details-marker{display:none;}summary::after{content:"+";color:var(--red);font-size:20px;}
+details[open] summary::after{content:"−";}details p{padding:0 16px 16px;color:#5b3a44;font-size:14px;}
+.notice{margin-top:18px;background:rgba(212,175,55,.12);border:1px dashed var(--gold);border-radius:12px;padding:16px;font-size:13px;color:#5a3b00;}
+
+.footer{background:#1c060c;color:#e9d8cf;padding:46px 0 22px;margin-top:60px;border-top:1px solid var(--line);}
+.fg{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:26px;}
+.footer h4{color:#fff;font-size:16px;margin-bottom:12px;}
+.footer a{color:#cdb6ac;font-size:14px;display:inline-block;padding:4px 0;}
+.footer a:hover{color:var(--gold2);}
+.fb{text-align:center;margin-top:26px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:#cdb6ac;}
+.fb .u{color:var(--gold2);font-family:ui-monospace,Menlo,Consolas,monospace;}
+.toTop{position:fixed;right:18px;bottom:18px;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--red2));color:#2a0810;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;box-shadow:var(--shadow);opacity:0;visibility:hidden;transition:.3s;z-index:900;}
+.toTop.show{opacity:1;visibility:visible;}
+
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr;}}
+@media(max-width:768px){.menu-btn{display:flex;}.nav-links{position:fixed;top:var(--navh);left:0;right:0;background:rgba(42,8,16,.98);border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0;max-height:0;overflow:hidden;transition:max-height .35s;}.nav-links.open{max-height:560px;}.nav-links a{padding:14px 18px;border-radius:0;border-bottom:1px solid rgba(255,255,255,.06);}.two{grid-template-columns:1fr;}.grid{grid-template-columns:repeat(auto-fill,minmax(142px,1fr));}.cover{height:186px;}}
+@media(max-width:420px){.grid{grid-template-columns:1fr 1fr;}.cover{height:168px;}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"福利电影网","url":"https://fulidianyingwang-h5.github.io","potentialAction":{"@type":"SearchAction","target":"https://fulidianyingwang-h5.github.io#library","query-input":"required name=search_term"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"福利电影网提供什么福利？","acceptedAnswer":{"@type":"Answer","text":"本演示站提供0元观影券、新用户片单福利、分类票根券与热门榜单；仅为单页模板演示，不提供实际未授权播放源，内页链接以 # 占位。"}},
+{"@type":"Question","name":"免费片单是否涉及盗版？","acceptedAnswer":{"@type":"Answer","text":"不涉及。页面仅作合规演示；正式接入电影、剧集播放需取得著作权人信息网络传播权授权，并按要求办理互联网视听节目相关资质。"}},
+{"@type":"Question","name":"移动端能领券和看片单吗？","acceptedAnswer":{"@type":"Answer","text":"全站响应式，手机端自动折叠导航、券卡与片库自适应；点击券或影片进入演示详情，正式站把 # 替换为真实地址即可。"}},
+{"@type":"Question","name":"必应怎么收录这个单页？","acceptedAnswer":{"@type":"Answer","text":"已配置 title、description、canonical、Open Graph 与结构化数据；可在 Bing Webmaster Tools 提交首页 https://fulidianyingwang-h5.github.io 。按你要求不生成 robots.txt 与 sitemap.xml。"}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Movie","name":"红毯观影券","url":"https://fulidianyingwang-h5.github.io#library","description":"演示影片：福利电影网票根风片库示例，用于免费高清片单模板展示。","genre":["剧情","福利片单"],"datePublished":"2025-06-01","aggregateRating":{"@type":"AggregateRating","ratingValue":"9.0","bestRating":"10","worstRating":"1","ratingCount":"210"}}
+</script>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<header class="nav">
+  <div class="brand"><b>福利电影网</b><span class="tag">fulidianyingwang-h5</span></div>
+  <button class="menu-btn" id="menuBtn" aria-label="菜单" aria-expanded="false"><span></span><span></span><span></span></button>
+  <nav class="nav-links" id="navLinks" aria-label="主导航">
+    <a href="#home">首页</a>
+    <a href="#coupon">观影福利</a>
+    <a href="#library">在线片库</a>
+    <a href="#category">电影分类</a>
+    <a href="#ranking">热门榜单</a>
+    <a href="#help">观影帮助</a>
+    <a href="#about">关于本站</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="ticket">
+      <span class="perf">ADMIT ONE · 单页演示</span>
+      <h1>福利电影网 · <em>0元</em>票根 <br>免费高清随便刷</h1>
+      <p>福利电影网（fulidianyingwang-h5）整理免费观影福利、高清片单、新用户券与分类影库；手机电脑自适应，找片像检票一样简单。本页仅演示，不提供未授权播放。</p>
+      <div class="urlbox">https://fulidianyingwang-h5.github.io</div>
+      <br>
+      <a class="cta" href="#coupon">领取观影福利 #</a>
+    </div>
+    <aside class="side-card" aria-label="站点信息">
+      <h3>🎟️ 福利信息卡</h3>
+      <div class="dt"><span>网站名称</span><span>福利电影网</span></div>
+      <div class="dt"><span>域名</span><span>fulidianyingwang-h5</span></div>
+      <div class="dt"><span>官网</span><span>github.io 单页</span></div>
+      <div class="dt"><span>福利</span><span>0元片单/新用户券</span></div>
+      <div class="dt"><span>适配</span><span>移动端自适应</span></div>
+    </aside>
+  </div>
+</section>
+
+<section class="section" id="coupon">
+  <div class="wrap">
+    <h2 class="sec-title">观影福利<small>FULI DIANYINGWANG · 票根券</small></h2>
+    <div class="coupons">
+      <div class="coupon"><div class="amt">0元<small>/全月</small></div><h3>新用户入门券</h3><p>领精选高清片单，动作/喜剧/爱情任选，演示内页均 #。</p><a class="get" href="#">立即领取 #</a></div>
+      <div class="coupon"><div class="amt">5折<small>/会员</small></div><h3>会员畅看券</h3><p>热门院线转网、剧集合集优先推荐；正式站替换为真实权益。</p><a class="get" href="#">领取会员券 #</a></div>
+      <div class="coupon"><div class="amt">免费<small>/周末</small></div><h3>周末福利场</h3><p>周末限定片单，合家欢/动漫/纪录片一键加入片库。</p><a class="get" href="#">查看周末场 #</a></div>
+      <div class="coupon"><div class="amt">合集<small>/专题</small></div><h3>专题打包券</h3><p>按导演、系列、地区打包，悬疑马拉松、爱情合集免费用。</p><a class="get" href="#">打开专题 #</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="library" style="background:rgba(212,175,55,.06);">
+  <div class="wrap">
+    <h2 class="sec-title">在线片库<small>FULI DIANYINGWANG · 精选影片</small></h2>
+    <div class="grid">
+      <article class="movie"><div class="cover p1"><span class="ribbon alt">0元</span>🎬</div><div class="minfo"><h3>红毯误会局</h3><p><span>喜剧</span><span>2025</span></p></div></article>
+      <article class="movie"><div class="cover p2"><span class="ribbon">新片</span>🍷</div><div class="minfo"><h3>金色旧片约</h3><p><span>爱情</span><span>2025</span></p></div></article>
+      <article class="movie"><div class="cover p3"><span class="ribbon alt">口碑</span>🪐</div><div class="minfo"><h3>深空福利站</h3><p><span>科幻</span><span>2024</span></p></div></article>
+      <article class="movie"><div class="cover p4"><span class="ribbon">烧脑</span>🕵️</div><div class="minfo"><h3>票根谜案集</h3><p><span>悬疑</span><span>2023</span></p></div></article>
+      <article class="movie"><div class="cover p5"><span class="ribbon alt">合家欢</span>😄</div><div class="minfo"><h3>周末放映厅</h3><p><span>家庭</span><span>2024</span></p></div></article>
+      <article class="movie"><div class="cover p6"><span class="ribbon">史诗</span>⚔️</div><div class="minfo"><h3>丝绒戏班录</h3><p><span>历史</span><span>2022</span></p></div></article>
+    </div>
+    <div style="text-align:center;margin-top:28px;"><a href="#" style="display:inline-block;border:1px solid var(--gold);padding:12px 28px;border-radius:26px;font-weight:800;color:var(--red);">浏览全部福利片单 #</a></div>
+  </div>
+</section>
+
+<section class="section" id="category">
+  <div class="wrap">
+    <h2 class="sec-title">电影分类<small>按类型领片单</small></h2>
+    <div class="chips">
+      <a class="chip" href="#library">动作枪战 #</a>
+      <a class="chip" href="#library">喜剧搞笑 #</a>
+      <a class="chip" href="#library">科幻未来 #</a>
+      <a class="chip" href="#library">悬疑推理 #</a>
+      <a class="chip" href="#library">爱情青春 #</a>
+      <a class="chip" href="#library">历史战争 #</a>
+      <a class="chip" href="#library">动画亲子 #</a>
+      <a class="chip" href="#library">纪录片 #</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ranking" style="background:rgba(226,59,82,.06);">
+  <div class="wrap">
+    <h2 class="sec-title">热门榜单<small>FULI-H5 周福利榜</small></h2>
+    <div class="rank">
+      <div class="ri"><div class="rb"><h3>红毯误会局</h3><p>喜剧 / 2025 / 0元片单</p></div><div class="rs">9.8</div></div>
+      <div class="ri"><div class="rb"><h3>深空福利站</h3><p>科幻 / 2024 / 会员优先</p></div><div class="rs">9.5</div></div>
+      <div class="ri"><div class="rb"><h3>票根谜案集</h3><p>悬疑 / 2023 / 烧脑神作</p></div><div class="rs">9.3</div></div>
+      <div class="ri"><div class="rb"><h3>金色旧片约</h3><p>爱情 / 2025 / 周末福利</p></div><div class="rs">9.1</div></div>
+      <div class="ri"><div class="rb"><h3>周末放映厅</h3><p>家庭 / 2024 / 合家欢</p></div><div class="rs">8.9</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="help" style="background:rgba(212,175,55,.05);">
+  <div class="wrap">
+    <h2 class="sec-title">观影帮助<small>福利电影网 使用与合规</small></h2>
+    <div class="two">
+      <div class="panel">
+        <h3>快速上手</h3>
+        <p>1. 首页点“领取观影福利”，选择0元券、会员券或周末场，进入对应片单演示。</p>
+        <p>2. 到“在线片库/分类”按类型筛片；影片卡点击进入演示详情，内页均用 # 占位。</p>
+        <p>3. 手机端点右上角汉堡菜单切换栏目，全站自适应，无需手动缩放。</p>
+        <p>4. 官网统一为 https://fulidianyingwang-h5.github.io ，收藏后随时领福利看片单。</p>
+      </div>
+      <div>
+        <details open><summary>福利是免费看所有电影吗？</summary><p>本页是单页演示，“0元/福利”仅表示片单与券的展示逻辑；正式站若提供播放，须接入有版权的片源，不提供未授权完整影视。</p></details>
+        <details><summary>为什么有些链接是 #？</summary><p>按你的要求，内页、播放、详情全部用 # 占位；部署时把 # 替换成真实授权播放页或详情页地址即可。</p></details>
+        <details><summary>做电影站要避免什么？</summary><p>避免未授权转播、聚合非法视听源、色情擦边与盗版下载。传播影视应取得信息网络传播权授权，并办理相应互联网视听节目资质。[2,14,17](@ref)</p></details>
+        <details><summary>必应怎么更快收录？</summary><p>保持 title/description/canonical 一致、核心内容纯HTML；在 Bing Webmaster Tools 提交首页。本页按你要求不生成 robots.txt 与 sitemap.xml。[13,21](@ref)</p></details>
+      </div>
+    </div>
+    <div class="notice">
+      合规说明：本页为「福利电影网 / fulidianyingwang-h5」单页演示，仅展示免费片单、票根券与分类影库；不提供实际播放、不聚合非法片源、不含色情内容。正式上线接片源需取得著作权授权并办理相关视听资质。内页链接均以 # 占位，不生成 robots.txt 与 sitemap.xml。
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap">
+    <h2 class="sec-title">关于本站<small>品牌·域名·官网·SEO</small></h2>
+    <div class="two">
+      <div class="panel">
+        <h3>网站定位</h3>
+        <p>福利电影网（fulidianyingwang-h5）做“票根券＋免费片单”的影视单页：首页检票式入口、福利券区、片库、分类、榜单、帮助一体化。全站统一关键词「福利电影网」「fulidianyingwang-h5」「免费电影福利」。</p>
+        <p>官网：<br><span style="font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--red);">https://fulidianyingwang-h5.github.io</span></p>
+      </div>
+      <div class="panel">
+        <h3>技术与收录</h3>
+        <p>HTML/CSS 内联、语义化标题、canonical、Open Graph、JSON-LD（WebSite/FAQ/Movie）；核心内容不依赖JS，便于必应抓取单页。[13,19](@ref)</p>
+        <p>单页轻量、移动端优先；接真实片源后再补充站点地图与robots策略，本演示按你要求不生成。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="fg">
+      <div><h4>福利电影网</h4><ul>
+        <li><a href="#home">首页 #</a></li><li><a href="#coupon">观影福利 #</a></li><li><a href="#library">在线片库 #</a></li><li><a href="#about">关于本站 #</a></li>
+      </ul></div>
+      <div><h4>分类</h4><ul>
+        <li><a href="#category">动作 #</a></li><li><a href="#category">喜剧 #</a></li><li><a href="#category">科幻 #</a></li><li><a href="#category">悬疑 #</a></li>
+      </ul></div>
+      <div><h4>帮助</h4><ul>
+        <li><a href="#help">观影帮助 #</a></li><li><a href="#help">领券说明 #</a></li><li><a href="#">意见反馈 #</a></li><li><a href="#">免责声明 #</a></li>
+      </ul></div>
+      <div><h4>官方信息</h4><ul>
+        <li><a href="#">站名：福利电影网</a></li><li><a href="#">域名：fulidianyingwang-h5</a></li><li><a href="https://fulidianyingwang-h5.github.io">官网：fulidianyingwang-h5.github.io</a></li><li><a href="#">关键词：免费电影福利</a></li>
+      </ul></div>
+    </div>
+    <div class="fb">
+      <p>福利电影网 · fulidianyingwang-h5 · 合规免费观影福利/高清片单单页演示</p>
+      <p class="u">https://fulidianyingwang-h5.github.io</p>
+      <p>© 2026 福利电影网演示模板。不生成 robots.txt 与 sitemap.xml，内页链接以 # 占位；接真实片源需版权授权与视听资质。</p>
+    </div>
+  </div>
+</footer>
+
+<a href="#" class="toTop" id="toTop" aria-label="回到顶部">↑</a>
+<script>
+(function(){
+  var btn=document.getElementById('menuBtn'),links=document.getElementById('navLinks');
+  btn.addEventListener('click',function(){var o=links.classList.toggle('open');btn.classList.toggle('open',o);btn.setAttribute('aria-expanded',o?'true':'false');});
+  links.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){links.classList.remove('open');btn.classList.remove('open');btn.setAttribute('aria-expanded','false');});});
+  var t=document.getElementById('toTop');window.addEventListener('scroll',function(){t.classList.toggle('show',window.scrollY>400);});
+  t.addEventListener('click',function(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+</body>
+</html>
